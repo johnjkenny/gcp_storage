@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+gcp_storage/gcp_env/.*
+gcp_storage/gcp_env/default_sa
+gcp_storage/gcp_env/buckets
+gcp_storage/gcp_env/default_bucket
+notes.txt

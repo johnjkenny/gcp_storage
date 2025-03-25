@@ -1,3 +1,5 @@
-# Pkg-Name
+# GCP-Storage
 
-This is a template repository to create python packages with similar structure.
+## Prerequisites
+
+- Python 3.12
