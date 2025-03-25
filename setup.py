@@ -3,10 +3,11 @@ from setuptools import setup
 
 try:
     setup(
-        name='pkg-name',
+        name='gstorage',
         version='1.0.0',
         entry_points={'console_scripts': [
-            'pkg-name = pkg_name.cli:pkg_parent',
+            'gstorage = gcp_storage.cli:storage_parent',
+            'gstorage-init = gcp_storage.cli:storage_init',
         ]},
     )
     exit(0)
