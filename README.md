@@ -77,7 +77,15 @@ options:
   -F, --force           Force action
 ```
 
-1. Run the init command:
+1. Create virtual environment and install requirements:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
+```
+
+2. Run the init command:
 ```bash
 gstorage -I -sa /home/myUser/sa.json -b test_bucket1
 ```
