@@ -1,4 +1,5 @@
 from pathlib import Path
+from json import dump
 
 from gcp_storage.cloud_storage import GCPCloudStorage
 
@@ -16,7 +17,7 @@ class Init(GCPCloudStorage):
         Raises:
             FileNotFoundError: if the service account file is not found
         """
-        super().__init__(bucket)
+        super().__init__(bucket, set_used_bucket=False)
         self.__sa_path = Path(sa_path)
         if not self.__sa_path.exists():
             raise FileNotFoundError(f'File not found: {self.__sa_path}')
@@ -64,14 +65,19 @@ class Init(GCPCloudStorage):
             return True
         return False
 
-    def __create_bucket_trackers(self):
+    def __create_bucket_trackers(self) -> bool:
+        """Create the bucket tracker files to get default and used buckets
+
+        Returns:
+            bool: True if the bucket trackers were created successfully, False
+        """
         try:
             if self.__force or not Path(self.default_bucket).exists():
                 with open(self.default_bucket, 'w') as file:
                     file.write(self.bucket)
             if self.__force or not Path(self.used_buckets_file).exists():
                 with open(self.used_buckets_file, 'w') as file:
-                    file.write(self.bucket)
+                    dump([self.bucket], file)
             return True
         except Exception:
             self.log.exception('Failed to create bucket trackers')
@@ -85,5 +91,7 @@ class Init(GCPCloudStorage):
         """
         for method in [self.__create_env_key, self.__create_credentials, self.__create_bucket_trackers]:
             if not method():
+                self.log.error('Failed to initialize GCP Storage environment')
                 return False
+        self.log.info('Successfully initialized GCP Storage environment')
         return True

@@ -14,7 +14,7 @@ class Cipher:
         Args:
             logger (Logger): logger object
         """
-        self.log = logger or get_logger('gcp-secrets')
+        self.log = logger or get_logger('gcp-storage')
 
     @property
     def __xork(self) -> bytes:
