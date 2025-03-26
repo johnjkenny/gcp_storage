@@ -116,7 +116,7 @@ options:
 gstorage -c -n test1.txt -s "this is a test"
 [2025-03-26 15:45:47,858][INFO][cloud_storage,152]: Successfully uploaded data to test1.txt
 
-# Create object with folder like sorting:
+# Create object with folder structure (use /f1/f2/ etc for a root like structure):
 gstorage -c -n f1/f2/test123.txt -s "this was also a test"
 [2025-03-26 15:45:47,858][INFO][cloud_storage,152]: Successfully uploaded data to f1/f2/test123.txt
 
@@ -354,8 +354,7 @@ Contents:
   test3.txt
   test4.txt
 
-# Using prefix '/' for folder name prefix example:
-
+# Using prefix '/' for folder name example:
 gstorage -c -n /test2.txt -s 'test2'
 [2025-03-26 16:16:46,653][INFO][cloud_storage,153]: Successfully uploaded data to /test2.txt
 
